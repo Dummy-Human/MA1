@@ -22,12 +22,21 @@ init (data){
     this.load.image("lockerimg", "assets/lockers.png");
     this.load.image("windowimg", "assets/window.png");
 
+    //sound//
+    this.load.audio("door", "assets/door.mp3");
+    this.load.audio("key", "assets/key.mp3");
+
+    //tint//
+    this.load.image("tint", "assets/tint.jpg", {frameHeight: 100, frameWidth: 100})
+
     // character
     this.load.spritesheet('taki', 'assets/characterSprite.png', { frameWidth: 32, frameHeight: 32});
   }
 
   create() {
     console.log("*** world scene");
+
+    this.doorSnd = this.sound.add("door")
 
     //Step 3 - Create the map from main
     let map = this.make.tilemap({ key: "room6" });
@@ -66,6 +75,11 @@ init (data){
     // this.player = this.physics.add.sprite(playerPos.x, playerPos.y, 'taki').setScale(1.5);
     this.player.body.setSize (this.player.width * 0.5, this.player.height * 0.5);
     window.player = this.player;
+
+     //tint//
+     const image = this.add.image(0, 0, 'tint').setScale(1000);
+     image.setAlpha(0.6);
+     
     // this.player.setCollideWorldBounds(true);
     this.wallLayer.setCollisionByExclusion(-1, true)
     this.furnitureLayer.setCollisionByExclusion(-1, true)
@@ -96,6 +110,7 @@ init (data){
   update() {
     if(this.player.x > 870 && this.player.x < 890 && this.player.y > 260 && this.player.y < 269 ) {
       console.log("Jump to world")
+      this.doorSnd.play();
       this.world2();
      }
 

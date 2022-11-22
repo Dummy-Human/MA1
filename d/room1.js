@@ -26,10 +26,7 @@ init (data){
     this.load.image("windowimg", "assets/window.png");
 
     //sound//
-    this.load.audio("bgm", "assets/bgm.mp3");
     this.load.audio("door", "assets/door.mp3");
-    this.load.audio("death", "assets/death.mp3");
-    this.load.audio("ending", "assets/ending.mp3");
     this.load.audio("key", "assets/key.mp3");
 
     //tint//
@@ -41,8 +38,6 @@ init (data){
 
   create() {
     console.log("*** world scene");
-
-    
 
     this.doorSnd = this.sound.add("door")
 
@@ -101,25 +96,22 @@ init (data){
       repeat: 1,
     });
 
-
-
     // Add main player here with physics.add.sprite
     this.player = this.physics.add.sprite(600, 303, 'taki').setScale(1.5);
     // this.player = this.physics.add.sprite(playerPos.x, playerPos.y, 'taki').setScale(1.5);
     this.player.body.setSize (this.player.width * 0.5, this.player.height * 0.5);
     window.player = this.player;
+
+    //tint//
+    const image = this.add.image(0, 0, 'tint').setScale(1000);
+    image.setAlpha(0.6);
+
     // this.player.setCollideWorldBounds(true);
     this.wallLayer.setCollisionByExclusion(-1, true)
     this.furnitureLayer.setCollisionByExclusion(-1, true)
     
 
-    // Add time event / movement here
-
-    // get the tileIndex number in json, +1
-    //mapLayer.setTileIndexCallback(11, this.room1, this);
-
-
-    // Add custom properties in Tiled called "mouintain" as bool
+    
 
     // What will collider witg what layers
     this.physics.add.collider(this.wallLayer, this.player);

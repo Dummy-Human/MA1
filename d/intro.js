@@ -29,8 +29,7 @@ class intro extends Phaser.Scene {
 
     // On spacebar event, call the world scene
     spaceDown.on(
-      "down",
-      function () {
+      "down", function () {
         console.log("Jump to intro2 scene");
         let playerPos = {};
         playerPos.x = 772;

@@ -22,6 +22,9 @@ class world extends Phaser.Scene {
     this.load.spritesheet('taki', 'assets/characterSprite.png', { frameWidth: 32, frameHeight: 32});
     this.load.spritesheet("hunter", "assets/hunter.png", { frameWidth:64, frameHeight: 64})
 
+      //tint//
+      this.load.image("tint", "assets/tint.jpg", {frameHeight: 100, frameWidth: 100})
+
     //sound//
     this.load.audio("bgm", "assets/bgm.mp3")
     this.load.audio("death", "assets/death.mp3")
@@ -101,15 +104,16 @@ class world extends Phaser.Scene {
 
 
     // Add main player here with physics.add.sprite
-    
+    this.player = this.physics.add.sprite(150,500, 'taki').setScale(1.5);
+    this.player.body.setSize (this.player.width * 0.5, this.player.height * 0.5);
+    window.player = this.player;
+
+    const image = this.add.image(0, 0, 'tint').setScale(1000);
+    image.setAlpha(0.6);
 
     this.hunt = this.physics.add.sprite(300,650, "hunter").setScale(2);
     this.hunt.alpha = 0.5
     this.hunt.body.setSize (this.hunt.width * 0.1, this.hunt.height * 0.1);
-
-    this.player = this.physics.add.sprite(150,500, 'taki').setScale(1.5);
-    this.player.body.setSize (this.player.width * 0.5, this.player.height * 0.5);
-    window.player = this.player;
 
     this.player.setCollideWorldBounds(true);
     this.wallLayer.setCollisionByExclusion(-1, true)
@@ -119,15 +123,6 @@ class world extends Phaser.Scene {
     this.doorLayer.setCollisionByExclusion(-1,true)
     
     
-
-    // Add time event / movement here
-
-    // get the tileIndex number in json, +1
-    //mapLayer.setTileIndexCallback(11, this.room1, this);
-
-
-    // Add custom properties in Tiled called "mouintain" as bool
-
     // What will collider witg what layers
     this.physics.add.collider(this.wallLayer, this.player);
     this.physics.add.collider(this.lockerLayer, this.player);
@@ -146,6 +141,9 @@ class world extends Phaser.Scene {
   } /////////////////// end of create //////////////////////////////
 
   update() {
+
+
+    ///rooms///
     if(this.player.x > 268 && this.player.x < 276 && this.player.y > 375 && this.player.y < 381) {
       console.log("Jump to world")
       this.doorSnd.play();
@@ -170,12 +168,30 @@ class world extends Phaser.Scene {
       this.room4();
      }
      
-     if(this.player.x > 89 && this.player.x < 100 && this.player.y > 332 && this.player.y < 372) {
+     ///world///
+     if(this.player.x > 80 && this.player.x < 100 && this.player.y > 332 && this.player.y < 372) {
       console.log("Jump to world")
       this.doorSnd.play();
       this.world2();
      }
 
+     if(this.player.x > 80 && this.player.x < 110 && this.player.y > 620 && this.player.y < 640) {
+      console.log("Jump to world")
+      this.doorSnd.play();
+      this.world2();
+     }
+
+     if(this.player.x > 920 && this.player.x < 940 && this.player.y > 332 && this.player.y < 372) {
+      console.log("Jump to world")
+      this.doorSnd.play();
+      this.world2();
+     }
+
+     if(this.player.x > 910 && this.player.x < 940 && this.player.y > 620 && this.player.y < 640) {
+      console.log("Jump to world")
+      this.doorSnd.play();
+      this.world2();
+     }
 
 
     if (this.cursors.left.isDown) {
@@ -217,14 +233,7 @@ class world extends Phaser.Scene {
     playerPos.dir = "down";
     this.scene.start("room1",{playerPos: playerPos});
   }
-  world2(player, tile) {
-    console.log("world2 function");
-    let playerPos = {};
-    playerPos.x = 100;
-    playerPos.y = 360;
-    playerPos.dir = "right";
-    this.scene.start("world2");
-  }
+  
   room2(player, tile) {
     console.log("room1 function");
     let playerPos = {};
@@ -251,4 +260,41 @@ class world extends Phaser.Scene {
     playerPos.dir = "down";
     this.scene.start("room4",{playerPos: playerPos});
   }
+
+  world2(player, tile) {
+    console.log("world2 function");
+    let playerPos = {};
+    playerPos.x = 100;
+    playerPos.y = 360;
+    playerPos.dir = "right";
+    this.scene.start("world2");
+  }
+
+  world2(player, tile) {
+    console.log("world2 function");
+    let playerPos = {};
+    playerPos.x = 100;
+    playerPos.y = 360;
+    playerPos.dir = "right";
+    this.scene.start("world2");
+  }
+
+  world2(player, tile) {
+    console.log("world2 function");
+    let playerPos = {};
+    playerPos.x = 100;
+    playerPos.y = 360;
+    playerPos.dir = "right";
+    this.scene.start("world2");
+  }
+
+  world2(player, tile) {
+    console.log("world2 function");
+    let playerPos = {};
+    playerPos.x = 100;
+    playerPos.y = 360;
+    playerPos.dir = "right";
+    this.scene.start("world2");
+  }
+ 
 } //////////// end of class world ////////////////////////

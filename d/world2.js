@@ -20,11 +20,22 @@ class world2 extends Phaser.Scene {
 
     // character
     this.load.spritesheet('taki', 'assets/characterSprite.png', { frameWidth: 32, frameHeight: 32});
-    this.load.spritesheet("hunter", "assets/hunter.png", { frameWidth:62, frameHeight: 62})
+    this.load.spritesheet("hunter", "assets/hunter.png", { frameWidth:62, frameHeight: 62});
+  
+    //tint//
+    this.load.image("tint", "assets/tint.jpg", {frameHeight: 100, frameWidth: 100});
+
+    //sound//
+    this.load.audio("death", "assets/death.mp3");
+    this.load.audio("door", "assets/door.mp3");
+    this.load.audio("key", "assets/key.mp3");
   }
 
   create() {
     console.log("*** world scene");
+
+    //sound//
+    this.doorSnd = this.sound.add("door")
 
     //Step 3 - Create the map from main
     let map = this.make.tilemap({ key: "world2" });
@@ -64,13 +75,17 @@ class world2 extends Phaser.Scene {
 
 
     // Add main player here with physics.add.sprite
-    this.hunt = this.physics.add.sprite(300,650, "hunter").setScale(2);
-    this.hunt.alpha = 0.5
-    this.hunt.body.setSize (this.hunt.width * 0.1, this.hunt.height * 0.1);
-
+    
     this.player = this.physics.add.sprite(400,650, 'taki').setScale(1.5);
     this.player.body.setSize (this.player.width * 0.5, this.player.height * 0.5);
     window.player = this.player;
+    
+    const image = this.add.image(0, 0, 'tint').setScale(1000);
+    image.setAlpha(0.6);
+
+    this.hunt = this.physics.add.sprite(300,650, "hunter").setScale(2);
+    this.hunt.alpha = 0.5
+    this.hunt.body.setSize (this.hunt.width * 0.1, this.hunt.height * 0.1);
 
     this.player.setCollideWorldBounds(true);
     this.wallLayer.setCollisionByExclusion(-1, true)
@@ -107,27 +122,60 @@ class world2 extends Phaser.Scene {
   } /////////////////// end of create //////////////////////////////
 
   update() {
+
+    ///world///
     if(this.player.x > 89 && this.player.x < 100 && this.player.y > 332 && this.player.y < 372) {
       console.log("Jump to world")
+      this.doorSnd.play();
       this.world();
      }
+
+     if(this.player.x > 80 && this.player.x < 100 && this.player.y > 332 && this.player.y < 372) {
+      console.log("Jump to world")
+      this.doorSnd.play();
+      this.world();
+     }
+
+     if(this.player.x > 80 && this.player.x < 100 && this.player.y > 620 && this.player.y < 640) {
+      console.log("Jump to world")
+      this.doorSnd.play();
+      this.world();
+     }
+
+     if(this.player.x > 920 && this.player.x < 940 && this.player.y > 332 && this.player.y < 372) {
+      console.log("Jump to world")
+      this.doorSnd.play();
+      this.world();
+     }
+
+     if(this.player.x > 910 && this.player.x < 940 && this.player.y > 620 && this.player.y < 640) {
+      console.log("Jump to world")
+      this.doorSnd.play();
+      this.world();
+     }
+
+     ///rooms///
      if(this.player.x > 268 && this.player.x < 276 && this.player.y > 375 && this.player.y < 381) {
       console.log("Jump to world")
+      this.doorSnd.play();
       this.room5();
      }
 
      if(this.player.x > 740 && this.player.x < 760 && this.player.y > 375 && this.player.y < 381) {
       console.log("Jump to world")
+      this.doorSnd.play();
       this.room6();
      }
 
      if(this.player.x > 268 && this.player.x < 276 && this.player.y > 580 && this.player.y < 596) {
       console.log("Jump to world")
+      this.doorSnd.play();
       this.room7();
      }
 
      if(this.player.x > 740 && this.player.x < 760 && this.player.y > 580 && this.player.y < 596) {
       console.log("Jump to world")
+      this.doorSnd.play();
       this.room8();
      }
 
@@ -170,6 +218,33 @@ class world2 extends Phaser.Scene {
   //   playerPos.dir = "down";
   //   this.scene.start("room1");
   // }
+  world(player, tile) {
+    console.log("world function");
+    let playerPos = {};
+    playerPos.x = 100;
+    playerPos.y = 360;
+    playerPos.dir = "right";
+    this.scene.start("world");
+  }
+
+  world(player, tile) {
+    console.log("world function");
+    let playerPos = {};
+    playerPos.x = 100;
+    playerPos.y = 360;
+    playerPos.dir = "right";
+    this.scene.start("world");
+  }
+
+  world(player, tile) {
+    console.log("world function");
+    let playerPos = {};
+    playerPos.x = 100;
+    playerPos.y = 360;
+    playerPos.dir = "right";
+    this.scene.start("world");
+  }
+
   world(player, tile) {
     console.log("world function");
     let playerPos = {};
