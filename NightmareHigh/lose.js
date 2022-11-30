@@ -11,12 +11,17 @@ class lose extends Phaser.Scene {
     // Step 2 : Preload any images here, nickname, filename
     this.load.image("death", "assets/skull.png");
 
+    this.load.audio( "dead", "assets/death.mp3")
+
   }
 
   create() {
     console.log("*** intro scene");
 
     const image = this.add.image(160, 50, 'death').setScale(1);
+
+    let deadSnd = this.sound.add("dead")
+    deadSnd.play();
 
     var spaceDown = this.input.keyboard.addKey("SPACE");
 

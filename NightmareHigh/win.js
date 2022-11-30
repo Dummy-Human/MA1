@@ -11,6 +11,7 @@ class win extends Phaser.Scene {
   //dialog1//
   this.load.spritesheet( "winAnim", "assets/winAnim.png", { frameHeight: 500, frameWidth: 500})
 
+  this.load.audio( "winner", "assets/ending.mp3")
   }
 
   create() {
@@ -26,6 +27,11 @@ class win extends Phaser.Scene {
     ///dialog///
     this.physics.add.sprite(160,100, "winAnim").play('winner');
 
+    let endingSnd = this.sound.add("winner")
+    endingSnd.play();
+    
+    
+
 
     var spaceDown = this.input.keyboard.addKey("SPACE");
 
@@ -33,9 +39,7 @@ class win extends Phaser.Scene {
     spaceDown.on(
       "down", function () {
         console.log("Jump to room1 scene");
-        this.player.x = 560;
-        this.player.y = 420;
-        this.scene.start("intro2",{player: this.player});
+        this.scene.start("intro2");
       },
       this
     );
