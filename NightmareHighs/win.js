@@ -30,7 +30,6 @@ class win extends Phaser.Scene {
     let endingSnd = this.sound.add("winner")
     endingSnd.loop = false;
     endingSnd.play();
-    
 
     var spaceDown = this.input.keyboard.addKey("SPACE");
 

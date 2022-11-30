@@ -56,7 +56,6 @@ class world extends Phaser.Scene {
 
     this.unlockSnd = this.sound.add("unlock")
     this.unlockSnd.play();
-    
 
 
     //map//
@@ -279,8 +278,8 @@ class world extends Phaser.Scene {
       this.lock.setVisible(true)
     } else if (window.key > 2){
       this.lock.setVisible(false)
+      
     }
-
 
 
     if (window.key < 3){
