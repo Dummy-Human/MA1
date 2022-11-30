@@ -40,6 +40,8 @@ class world2 extends Phaser.Scene {
     this.load.audio("death", "assets/death.mp3");
     this.load.audio("door", "assets/door.mp3");
     this.load.audio("key", "assets/key.mp3");
+    this.load.audio("unlock", "assets/unlock.mp3");
+
   }
 
   create() {
@@ -47,6 +49,9 @@ class world2 extends Phaser.Scene {
 
     //sound//
     this.doorSnd = this.sound.add("door")
+
+    this.unlockSnd = this.sound.add("unlock")
+    this.unlockSnd.play();
 
     //map//
     let map = this.make.tilemap({ key: "world2" });
@@ -199,6 +204,12 @@ class world2 extends Phaser.Scene {
       this.player.anims.stop();
       this.player.body.setVelocity(0, 0);
       //console.log('idle');
+    }
+
+    if (window.key < 3){
+      this.unlockSnd.stop();
+    } else if (window.key > 2){
+      this.unlockSnd.play(1);
     }
 
 
