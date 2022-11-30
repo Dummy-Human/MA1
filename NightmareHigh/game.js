@@ -22,6 +22,6 @@
 
 var game = new Phaser.Game(config);
 
-window.key = 2
+window.key = 0
 
 window.icon = 0
