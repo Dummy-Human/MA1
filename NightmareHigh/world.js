@@ -44,6 +44,7 @@ class world extends Phaser.Scene {
     this.load.audio("door", "assets/door.mp3")
     this.load.audio("ending", "assets/ending.mp3")
     this.load.audio("key", "assets/key.mp3")
+    this.load.audio("unlock", "assets/unlock.mp3")
   }
 
   create() {
@@ -52,6 +53,10 @@ class world extends Phaser.Scene {
 
     //sound//
     this.doorSnd = this.sound.add("door")
+
+    this.unlockSnd = this.sound.add("unlock")
+    this.unlockSnd.play();
+    
 
 
     //map//
@@ -133,7 +138,7 @@ class world extends Phaser.Scene {
 
 
     //enemy//
-    this.hunt = this.physics.add.sprite(600,335, "hunter").setScale(2);
+    this.hunt = this.physics.add.sprite(500,630, "hunter").setScale(2);
     this.hunt.alpha = 0.5
     this.hunt.body.setCircle(20, 12, 12);
         
@@ -256,7 +261,6 @@ class world extends Phaser.Scene {
      window.key > 2 ) 
    {
       console.log("KEYS!", window.key);
-      this.doorSnd.play();
       this.lock.setAlpha(5);
       this.win();
     } 
@@ -276,7 +280,15 @@ class world extends Phaser.Scene {
     } else if (window.key > 2){
       this.lock.setVisible(false)
     }
-  
+
+
+
+    if (window.key < 3){
+      this.unlockSnd.stop();
+    } else if (window.key > 2){
+      this.unlockSnd.play(1);
+    }
+
 
     //enemy follow player//
     this.physics.moveToObject(this.hunt, this.player,30,600)

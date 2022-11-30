@@ -90,7 +90,7 @@ class world2 extends Phaser.Scene {
 
 
     //enemy//
-    this.hunt = this.physics.add.sprite(600,350, "hunter").setScale(2);
+    this.hunt = this.physics.add.sprite(500,630, "hunter").setScale(2);
     this.hunt.alpha = 0.5
     this.hunt.body.setCircle(20, 12, 12);
 
